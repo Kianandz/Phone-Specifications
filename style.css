@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+html {
+  font-family: "Poppins", sans-serif !important;
+}
+
+#root {
+  position: relative;
+  width: 100%;
+  background: #f0f0f0;
+  min-height: 100vh;
+}
+
+.slick-prev,
+.slick-next {
+  filter: drop-shadow(0 2px 4px rgb(0 0 0 / 1));
+  z-index: 10 !important;
+}
+
+.slick-slide {
+  margin: 0 10px !important;
+}
