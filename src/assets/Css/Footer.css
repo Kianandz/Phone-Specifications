@@ -1,0 +1,13 @@
+@media screen and (max-width: 1000px) {
+    .wrapper {
+        font-size: 15px !important;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .wrapper {
+        font-size: 12px !important;
+        margin-top: 40px !important;
+        padding: 20px !important;
+    }
+}

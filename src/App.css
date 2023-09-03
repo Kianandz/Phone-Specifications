@@ -1,0 +1,19 @@
+.home-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.fade-out {
+  animation: fadeOut 1s ease-in-out;
+  opacity: 1;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

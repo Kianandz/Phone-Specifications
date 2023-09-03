@@ -1,0 +1,9 @@
+@media screen and (max-width: 400px) {
+  .container-error-page {
+    width: 100% !important;
+    height: 100vh !important;
+  }
+  .image-wrapper {
+    width: 100% !important;
+  }
+}

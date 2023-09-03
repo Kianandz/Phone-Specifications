@@ -1,0 +1,8 @@
+@media screen and (max-width: 400px) {
+    .explore-container {
+        padding: 0 40px !important;
+    }
+    .explore-container div {
+        margin-bottom: 4px !important;
+    }
+}
