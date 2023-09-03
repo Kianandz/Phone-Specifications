@@ -8,3 +8,5 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 Check the required libraries are in the package.json file in "dependencies"
+
+I'm just getting started on this, Sorry if this bad!
