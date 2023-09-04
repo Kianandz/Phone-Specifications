@@ -7,6 +7,7 @@ import Text from "../Element/Text";
 import Img from "../Element/Img";
 import IconFA from "../Element/IconFA";
 import "../../assets/Css/Animation.css";
+import "../../assets/Css/Detail.css";
 
 const Detail = () => {
   const { id } = useParams();
@@ -31,20 +32,20 @@ const Detail = () => {
     <>
       <Navbar moreClass="sticky" moreResponsiveClass="sticky" />
       <div className="detail-container fade-in relative w-full py-8">
-        <div className="relative flex mx-8 p-6 bg-[#fafafa] shadow-xl drop-shadow-xl rounded-xl">
+        <div className="detail-header relative flex mx-8 p-6 bg-[#fafafa] shadow-xl drop-shadow-xl rounded-xl">
           {Data && (
             <>
-              <div className="relative w-72 h-72 mx-24 border border-gray-400 rounded-xl overflow-hidden">
+              <div className="img-wrapper relative w-72 h-72 mx-24 border border-gray-400 rounded-xl overflow-hidden">
                 <Img
                   srcImage={Data.phone_image}
                   altImage={Data.name}
                   className="w-full object-cover h-full"
                 />
               </div>
-              <div className="flex-1 capitalize">
-                <Title className="font-bold text-2xl" Title={Data.name} />
-                <div className="mt-2">
-                  <div className="flex items-center justify-start mb-2">
+              <div className="wrapper-detail-header flex-1 capitalize">
+                <Title className="title font-bold text-2xl" Title={Data.name} />
+                <div className="wrapper-subtitle-header mt-2">  
+                  <div className="subtitle-header flex items-center justify-start mb-2">
                     <Text
                       className="font-semibold text-sm w-20"
                       Text="Brands"
@@ -55,7 +56,7 @@ const Detail = () => {
                     />
                     <Text className="text-sm" Text={Data.brands} />
                   </div>
-                  <div className="flex items-center justify-start">
+                  <div className="subtitle-header flex items-center justify-start">
                     <Text
                       className="font-semibold text-sm w-20"
                       Text="Release Year"
@@ -68,24 +69,24 @@ const Detail = () => {
                   </div>
                 </div>
                 <Title
-                  className="font-bold text-lg my-4"
+                  className="title-header-spec font-bold text-lg my-4"
                   Title="Essential specifications"
                 />
-                <div className="grid grid-cols-2 gap-2">
-                  <div className="py-2 flex items-center justify-center border border-gray-400">
-                    <div className="w-6 mx-4">
+                <div className="container-header-spec grid grid-cols-2 gap-2">
+                  <div className="wrapper-spec py-2 flex items-center justify-center border border-gray-400">
+                    <div className="icon-wrapper w-6 mx-4">
                       <IconFA className="fa-solid fa-memory text-center text-xl" />
                     </div>
-                    <div className="flex-1 mr-2">
+                    <div className="text-head-spec-wrapper flex-1 mr-2">
                       <Text className="font-bold text-base" Text="Memory Ram" />
                       <Text className="text-base" Text={Data.ram} />
                     </div>
                   </div>
-                  <div className="py-2 flex items-center justify-center border border-gray-400">
-                    <div className="w-6 mx-4">
+                  <div className="wrapper-spec py-2 flex items-center justify-center border border-gray-400">
+                    <div className="icon-wrapper w-6 mx-4">
                       <IconFA className="fa-solid fa-camera text-center text-xl" />
                     </div>
-                    <div className="flex-1 mr-2">
+                    <div className="text-head-spec-wrapper flex-1 mr-2">
                       <Text
                         className="font-bold text-base"
                         Text="Camera Resolution"
@@ -93,11 +94,11 @@ const Detail = () => {
                       <Text className="text-base" Text={Data.main_camera} />
                     </div>
                   </div>
-                  <div className="py-2 flex items-center justify-center border border-gray-400">
-                    <div className="w-6 mx-4">
+                  <div className="wrapper-spec py-2 flex items-center justify-center border border-gray-400">
+                    <div className="icon-wrapper w-6 mx-4">
                       <IconFA className="fa-solid fa-mobile text-center text-xl" />
                     </div>
-                    <div className="flex-1 mr-2">
+                    <div className="text-head-spec-wrapper flex-1 mr-2">
                       <Text
                         className="font-bold text-base"
                         Text="Screen Size"
@@ -105,11 +106,11 @@ const Detail = () => {
                       <Text className="text-base" Text={Data.screen_size} />
                     </div>
                   </div>
-                  <div className="py-2 flex items-center justify-center border border-gray-400">
-                    <div className="w-6 mx-4">
+                  <div className="wrapper-spec py-2 flex items-center justify-center border border-gray-400">
+                    <div className="icon-wrapper w-6 mx-4">
                       <IconFA className="fa-solid fa-battery text-center text-xl" />
                     </div>
-                    <div className="flex-1">
+                    <div className="text-head-spec-wrapper flex-1">
                       <Text
                         className="font-bold text-base"
                         Text="Battery Capacity"
@@ -126,30 +127,30 @@ const Detail = () => {
           {Data && (
             <>
               <Title
-                className="font-bold text-2xl"
+                className="title-content font-bold text-2xl"
                 Title="Spesification Detail"
               />
               {/* Basic Info */}
               <div className="mt-6">
                 <Title
-                  className="font-semibold text-lg mb-2"
+                  className="subtitle-spec font-semibold text-lg mb-2"
                   Title="Basic Info"
                 />
-                <div className="flex items-center justify-start w-full border border-gray-400 gap-4">
+                <div className="wrapper-spec-detail flex items-center justify-start w-full border border-gray-400 gap-4">
                   <Title
                     className="w-40 font-semibold text-sm border-r border-gray-400 p-2"
                     Title="Phone Name"
                   />
                   <Text className="w-full text-sm p-2" Text={Data.name} />
                 </div>
-                <div className="flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
+                <div className="wrapper-spec-detail flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
                   <Title
                     className="w-40 font-semibold text-sm border-r border-gray-400 p-2"
                     Title="Brands"
                   />
                   <Text className="w-full text-sm p-2" Text={Data.brands} />
                 </div>
-                <div className="flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
+                <div className="wrapper-spec-detail flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
                   <Title
                     className="w-40 font-semibold text-sm border-r border-gray-400 p-2"
                     Title="Release Years"
@@ -162,8 +163,8 @@ const Detail = () => {
               </div>
               {/* Network */}
               <div className="mt-6">
-                <Title className="font-semibold text-lg mb-2" Title="Network" />
-                <div className="flex items-center justify-start w-full border border-gray-400 gap-4">
+                <Title className="subtitle-spec font-semibold text-lg mb-2" Title="Network" />
+                <div className="wrapper-spec-detail flex items-center justify-start w-full border border-gray-400 gap-4">
                   <Title
                     className="w-40 font-semibold text-sm border-r border-gray-400 p-2"
                     Title="Network"
@@ -173,14 +174,14 @@ const Detail = () => {
                     Text={Data.phone_network}
                   />
                 </div>
-                <div className="flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
+                <div className="wrapper-spec-detail flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
                   <Title
                     className="w-40 font-semibold text-sm border-r border-gray-400 p-2"
                     Title="Sim"
                   />
                   <Text className="w-full text-sm p-2" Text={Data.phone_sim} />
                 </div>
-                <div className="flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
+                <div className="wrapper-spec-detail flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
                   <Title
                     className="w-40 font-semibold text-sm border-r border-gray-400 p-2"
                     Title="Sim Type"
@@ -193,29 +194,29 @@ const Detail = () => {
               </div>
               {/* Design */}
               <div className="mt-6">
-                <Title className="font-semibold text-lg mb-2" Title="Design" />
-                <div className="flex items-center justify-start w-full border border-gray-400 gap-4">
+                <Title className="subtitle-spec font-semibold text-lg mb-2" Title="Design" />
+                <div className="wrapper-spec-detail flex items-center justify-start w-full border border-gray-400 gap-4">
                   <Title
                     className="w-40 font-semibold text-sm border-r border-gray-400 p-2"
                     Title="Material"
                   />
                   <Text className="w-full text-sm p-2" Text={Data.material} />
                 </div>
-                <div className="flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
+                <div className="wrapper-spec-detail flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
                   <Title
                     className="w-40 font-semibold text-sm border-r border-gray-400 p-2"
                     Title="Dimension"
                   />
                   <Text className="w-full text-sm p-2" Text={Data.dimensions} />
                 </div>
-                <div className="flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
+                <div className="wrapper-spec-detail flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
                   <Title
                     className="w-40 font-semibold text-sm border-r border-gray-400 p-2"
                     Title="Weight"
                   />
                   <Text className="w-full text-sm p-2" Text={Data.weight} />
                 </div>
-                <div className="flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
+                <div className="wrapper-spec-detail flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
                   <Title
                     className="w-40 font-semibold text-sm border-r border-gray-400 p-2"
                     Title="Color"
@@ -225,15 +226,15 @@ const Detail = () => {
               </div>
               {/* Screen */}
               <div className="mt-6">
-                <Title className="font-semibold text-lg mb-2" Title="Screen" />
-                <div className="flex items-center justify-start w-full border border-gray-400 gap-4">
+                <Title className="subtitle-spec font-semibold text-lg mb-2" Title="Screen" />
+                <div className="wrapper-spec-detail flex items-center justify-start w-full border border-gray-400 gap-4">
                   <Title
                     className="w-40 font-semibold text-sm border-r border-gray-400 p-2"
                     Title="Resolution"
                   />
                   <Text className="w-full text-sm p-2" Text={Data.resolution} />
                 </div>
-                <div className="flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
+                <div className="wrapper-spec-detail flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
                   <Title
                     className="w-40 font-semibold text-sm border-r border-gray-400 p-2"
                     Title="Screen Size"
@@ -243,7 +244,7 @@ const Detail = () => {
                     Text={Data.screen_size}
                   />
                 </div>
-                <div className="flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
+                <div className="wrapper-spec-detail flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
                   <Title
                     className="w-40 font-semibold text-sm border-r border-gray-400 p-2"
                     Title="Technology"
@@ -254,17 +255,17 @@ const Detail = () => {
               {/* Software */}
               <div className="mt-6">
                 <Title
-                  className="font-semibold text-lg mb-2"
+                  className="subtitle-spec font-semibold text-lg mb-2"
                   Title="Software"
                 />
-                <div className="flex items-center justify-start w-full border border-gray-400 gap-4">
+                <div className="wrapper-spec-detail flex items-center justify-start w-full border border-gray-400 gap-4">
                   <Title
                     className="w-40 font-semibold text-sm border-r border-gray-400 p-2"
                     Title="OS"
                   />
                   <Text className="w-full text-sm p-2" Text={Data.os} />
                 </div>
-                <div className="flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
+                <div className="wrapper-spec-detail flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
                   <Title
                     className="w-40 font-semibold text-sm border-r border-gray-400 p-2"
                     Title="OS Version"
@@ -275,24 +276,24 @@ const Detail = () => {
               {/* Hardware */}
               <div className="mt-6">
                 <Title
-                  className="font-semibold text-lg mb-2"
+                  className="subtitle-spec font-semibold text-lg mb-2"
                   Title="Hardware"
                 />
-                <div className="flex items-center justify-start w-full border border-gray-400 gap-4">
+                <div className="wrapper-spec-detail flex items-center justify-start w-full border border-gray-400 gap-4">
                   <Title
                     className="w-40 font-semibold text-sm border-r border-gray-400 p-2"
                     Title="Chipset"
                   />
                   <Text className="w-full text-sm p-2" Text={Data.chipset} />
                 </div>
-                <div className="flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
+                <div className="wrapper-spec-detail flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
                   <Title
                     className="w-40 font-semibold text-sm border-r border-gray-400 p-2"
                     Title="Cpu"
                   />
                   <Text className="w-full text-sm p-2" Text={Data.cpu} />
                 </div>
-                <div className="flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
+                <div className="wrapper-spec-detail flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
                   <Title
                     className="w-40 font-semibold text-sm border-r border-gray-400 p-2"
                     Title="Gpu"
@@ -302,22 +303,22 @@ const Detail = () => {
               </div>
               {/* Memory */}
               <div className="mt-6">
-                <Title className="font-semibold text-lg mb-2" Title="Memory" />
-                <div className="flex items-center justify-start w-full border border-gray-400 gap-4">
+                <Title className="subtitle-spec font-semibold text-lg mb-2" Title="Memory" />
+                <div className="wrapper-spec-detail flex items-center justify-start w-full border border-gray-400 gap-4">
                   <Title
                     className="w-40 font-semibold text-sm border-r border-gray-400 p-2"
                     Title="Ram"
                   />
                   <Text className="w-full text-sm p-2" Text={Data.ram} />
                 </div>
-                <div className="flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
+                <div className="wrapper-spec-detail flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
                   <Title
                     className="w-40 font-semibold text-sm border-r border-gray-400 p-2"
                     Title="Storage"
                   />
                   <Text className="w-full text-sm p-2" Text={Data.storage} />
                 </div>
-                <div className="flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
+                <div className="wrapper-spec-detail flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
                   <Title
                     className="w-40 font-semibold text-sm border-r border-gray-400 p-2"
                     Title="Storage Type"
@@ -330,8 +331,8 @@ const Detail = () => {
               </div>
               {/* Camera */}
               <div className="mt-6">
-                <Title className="font-semibold text-lg mb-2" Title="Camera" />
-                <div className="flex items-center justify-start w-full border border-gray-400 gap-4">
+                <Title className="subtitle-spec font-semibold text-lg mb-2" Title="Camera" />
+                <div className="wrapper-spec-detail flex items-center justify-start w-full border border-gray-400 gap-4">
                   <Title
                     className="w-40 font-semibold text-sm border-r border-gray-400 p-2"
                     Title="Main Camera"
@@ -341,7 +342,7 @@ const Detail = () => {
                     Text={Data.main_camera}
                   />
                 </div>
-                <div className="flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
+                <div className="wrapper-spec-detail flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
                   <Title
                     className="w-40 font-semibold text-sm border-r border-gray-400 p-2"
                     Title="Selfie Camera"
@@ -355,38 +356,38 @@ const Detail = () => {
               {/* Connectivity */}
               <div className="mt-6">
                 <Title
-                  className="font-semibold text-lg mb-2"
+                  className="subtitle-spec font-semibold text-lg mb-2"
                   Title="Connectivity"
                 />
-                <div className="flex items-center justify-start w-full border border-gray-400 gap-4">
+                <div className="wrapper-spec-detail flex items-center justify-start w-full border border-gray-400 gap-4">
                   <Title
                     className="w-40 font-semibold text-sm border-r border-gray-400 p-2"
                     Title="NFC"
                   />
                   <Text className="w-full text-sm p-2" Text={Data.nfc} />
                 </div>
-                <div className="flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
+                <div className="wrapper-spec-detail flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
                   <Title
                     className="w-40 font-semibold text-sm border-r border-gray-400 p-2"
                     Title="USB"
                   />
                   <Text className="w-full text-sm p-2" Text={Data.usb} />
                 </div>
-                <div className="flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
+                <div className="wrapper-spec-detail flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
                   <Title
                     className="w-40 font-semibold text-sm border-r border-gray-400 p-2"
                     Title="Bluetooth"
                   />
                   <Text className="w-full text-sm p-2" Text={Data.bluetooth} />
                 </div>
-                <div className="flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
+                <div className="wrapper-spec-detail flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
                   <Title
                     className="w-40 font-semibold text-sm border-r border-gray-400 p-2"
                     Title="GPS"
                   />
                   <Text className="w-full text-sm p-2" Text={Data.gps} />
                 </div>
-                <div className="flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
+                <div className="wrapper-spec-detail flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
                   <Title
                     className="w-40 font-semibold text-sm border-r border-gray-400 p-2"
                     Title="Wi-Fi"
@@ -396,15 +397,15 @@ const Detail = () => {
               </div>
               {/* Battery */}
               <div className="mt-6">
-                <Title className="font-semibold text-lg mb-2" Title="Battery" />
-                <div className="flex items-center justify-start w-full border border-gray-400 gap-4">
+                <Title className="subtitle-spec font-semibold text-lg mb-2" Title="Battery" />
+                <div className="wrapper-spec-detail flex items-center justify-start w-full border border-gray-400 gap-4">
                   <Title
                     className="w-40 font-semibold text-sm border-r border-gray-400 p-2"
                     Title="Battery"
                   />
                   <Text className="w-full text-sm p-2" Text={Data.battery} />
                 </div>
-                <div className="flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
+                <div className="wrapper-spec-detail flex items-center justify-start w-full border-b border-x border-gray-400 gap-4">
                   <Title
                     className="w-40 font-semibold text-sm border-r border-gray-400 p-2"
                     Title="Battery Type"
@@ -418,7 +419,7 @@ const Detail = () => {
             </>
           )}
           <Title
-          className="font-bold text-sm my-6"
+          className="disclaimer font-bold text-sm my-6"
           Title="Disclaimer We can not guarantee that the information on this page is 100% correct."
           />
         </div>
