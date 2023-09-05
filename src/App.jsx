@@ -5,17 +5,24 @@ import Loading from "./Component/Fragment/Loading";
 import Home from "./Component/Pages/Home";
 import Explore from "./Component/Pages/Explore";
 import ErrorPage from "./Component/Pages/404";
-import Input from "./Component/Pages/Admin/Input";
+import Login from "./Component/Pages/Admin/Login";
 import Search from "./Component/Pages/Search";
 import Brands from "./Component/Pages/Brands";
 import Smartphone from "./Component/Pages/Smartphone";
 import PhoneBrands from "./Component/Pages/PhoneBrands";
 import Detail from "./Component/Pages/Detail";
+import Dashboard from "./Component/Pages/Admin/Dashboard";
 
 const Router = createBrowserRouter([
   {
-    path: "/admin/inputPhone",
-    element: <Input/>
+    path: "/admin",
+    element: <Login/>,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/admin/dashboard",
+    element: <Dashboard/>,
+    errorElement: <ErrorPage />,
   },
   {
     path: "/",
