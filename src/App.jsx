@@ -12,6 +12,7 @@ import Smartphone from "./Component/Pages/Smartphone";
 import PhoneBrands from "./Component/Pages/PhoneBrands";
 import Detail from "./Component/Pages/Detail";
 import Dashboard from "./Component/Pages/Admin/Dashboard";
+import TestAPI from "./Component/Pages/TestAPI";
 
 const Router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ const Router = createBrowserRouter([
   {
     path: "/phone/:id",
     element: <Detail/>,
+  },
+  {
+    path: "apitest",
+    element: <TestAPI/>
   }
 ]);
 
