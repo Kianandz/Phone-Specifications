@@ -16,47 +16,62 @@ const Sidebar = (props) => {
 
   return (
     <>
-      <div className="menu-container flex items-center justify-between px-8 py-2">
+      <div className="menu-container flex items-center justify-between px-8 py-6 shadow-xl drop-shadow-xl">
         <IconGoogle
           className="cursor-pointer"
           iconValue="menu"
           onClick={handleSidebar}
         />
+        <Title className="font-semibold text-xl" Title="Halo Admin" />
       </div>
       <div
-        className={`sidebar-container fixed z-50 top-0 left-0 w-72 h-screen bg-gray-800 p-4 ${
-          showNav ? "show-nav" : ""
-        } duration-700`}
+        className={`sidebar-container ${
+          showNav ? "show-nav" : "hide-nav"
+        } fixed z-20 top-0 left-0 duration-700 w-screen bg-[#00000099] z-50`}
       >
-        <Title
-          className="font-bold text-4xl text-white text-center my-2 cursor-pointer hover:text-gray-400 transition-all"
-          Title="GadgetPedia"
+        <div className="w-72 h-screen bg-gray-800 p-4 float-left">
+          <Title
+            className="font-bold text-4xl text-white text-center my-2 cursor-pointer hover:text-gray-400 transition-all"
+            Title="GadgetPedia"
+          />
+          <div className="relative w-full mt-14">
+            <div className="flex items-center justify-start gap-3 text-white cursor-pointer hover:text-gray-400 transition-all px-4 mb-6">
+              <IconFA className="fa-solid fa-home text-2xl" />
+              <Text className="font-semibold text-base" Text="Home" />
+            </div>
+            <div className="flex items-center justify-start gap-3 text-white cursor-pointer hover:text-gray-400 transition-all px-4 mb-6">
+              <IconFA className="fa-solid fa-user text-2xl mr-[6px]" />
+              <Text className="font-semibold text-base" Text="List User" />
+            </div>
+            <div className="flex items-center justify-start gap-3 text-white cursor-pointer hover:text-gray-400 transition-all px-4 mb-6">
+              <IconFA className="fa-solid fa-upload text-2xl" />
+              <Text
+                className="font-semibold text-base"
+                Text="Insert Smartphone"
+              />
+            </div>
+            <div className="flex items-center justify-start gap-3 text-white cursor-pointer hover:text-gray-400 transition-all px-4 mb-6">
+              <IconFA className="fa-solid fa-mobile-alt text-2xl mr-[6px]" />
+              <Text
+                className="font-semibold text-base"
+                Text="List Smartphone"
+              />
+            </div>
+            <div className="flex items-center justify-start gap-3 text-white cursor-pointer hover:text-gray-400 transition-all px-4 mb-6">
+              <IconFA className="fa-solid fa-list text-2xl" />
+              <Text className="font-semibold text-base" Text="List Brands" />
+            </div>
+          </div>
+          <div className="absolute bottom-0 left-0 flex items-center justify-start gap-3 text-white cursor-pointer hover:text-gray-400 transition-all px-8 mb-12">
+            <IconFA className="fa-solid fa-sign-out text-2xl" />
+            <Text className="font-semibold text-base" Text="Logout" />
+          </div>
+        </div>
+        <IconGoogle
+          className="text-black cursor-pointer ml-6 mt-6 text-2xl text-white"
+          iconValue="close"
+          onClick={handleSidebar}
         />
-        <div className="relative w-full mt-14">
-          <div className="flex items-center justify-start gap-3 text-white cursor-pointer hover:text-gray-400 transition-all px-4 mb-6">
-            <IconFA className="fa-solid fa-home text-2xl" />
-            <Text className="font-semibold text-base" Text="Home" />
-          </div>
-          <div className="flex items-center justify-start gap-3 text-white cursor-pointer hover:text-gray-400 transition-all px-4 mb-6">
-            <IconFA className="fa-solid fa-upload text-2xl" />
-            <Text
-              className="font-semibold text-base"
-              Text="Insert Smartphone"
-            />
-          </div>
-          <div className="flex items-center justify-start gap-3 text-white cursor-pointer hover:text-gray-400 transition-all px-4 mb-6">
-            <IconFA className="fa-solid fa-mobile text-2xl" />
-            <Text className="font-semibold text-base" Text="List Smartphone" />
-          </div>
-          <div className="flex items-center justify-start gap-3 text-white cursor-pointer hover:text-gray-400 transition-all px-4 mb-6">
-            <IconFA className="fa-solid fa-list text-2xl" />
-            <Text className="font-semibold text-base" Text="List Brands" />
-          </div>
-        </div>
-        <div className="absolute bottom-0 left-0 flex items-center justify-start gap-3 text-white cursor-pointer hover:text-gray-400 transition-all px-8 mb-12">
-          <IconFA className="fa-solid fa-sign-out text-2xl" />
-          <Text className="font-semibold text-base" Text="Logout" />
-        </div>
       </div>
     </>
   );
