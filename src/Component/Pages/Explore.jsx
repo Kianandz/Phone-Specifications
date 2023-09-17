@@ -134,7 +134,7 @@ const Explore = () => {
                     key={`${item.id}_${itemIndex}`}
                   >
                     <Card
-                      srcImage={item.phone_image}
+                      srcImage={`${API_BASE_URL}/ImageData/${item.phone_image}`}
                       Title={item.name}
                       id={item.id}
                     />

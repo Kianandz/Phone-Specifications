@@ -1,23 +1,68 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { API_BASE_URL } from "../../API_BASE_URL";
 import Navbar from "../Fragment/Navbar";
 import Title from "../Element/Title";
 import Text from "../Element/Text";
 import Img from "../Element/Img";
 import IconFA from "../Element/IconFA";
+import AlertAction from "../Fragment/AlertAction";
 import "../../assets/Css/Animation.css";
 import "../../assets/Css/Detail.css";
 
 const Detail = () => {
+  const Navigate = useNavigate();
   const { id } = useParams();
   const [Data, setData] = useState([]);
+  const [action, setAction] = useState(false);
+  const role = localStorage.getItem("role");
+  const [showAlertConfirm, setShowAlertConfirm] = useState(false);
+  const [showAlertSuccess, setShowAlertSuccess] = useState(false);
+
+  const handleAlert = () => {
+    setShowAlertConfirm(!showAlertConfirm);
+  };
+
+  const prevPage = () => {
+    Navigate(-1);
+  };
+
+  const handleDelete = () => {
+    fetch(`${API_BASE_URL}/delPhone/${id}`, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        if (response.ok) {
+          setShowAlertConfirm(false);
+          setShowAlertSuccess(true);
+        } else {
+          console.error("Error deleting item");
+        }
+      })
+      .catch((error) => {
+        console.error("Error deleting item:", error);
+      });
+  };
+
+  const updateViewCount = (itemId) => {
+    fetch(`${API_BASE_URL}/update-view-count/${itemId}`, {
+      method: "POST",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("success update", data);
+      })
+      .catch((error) => {
+        console.error("Error updating view_count: ", error);
+      });
+  };
 
   useEffect(() => {
     fetch(`${API_BASE_URL}/phone/${id}`)
       .then((response) => response.json())
       .then((data) => {
         setData(data);
+        updateViewCount(id);
       })
       .catch((error) => {
         console.error("Error Fetching Phones : ", error);
@@ -25,26 +70,70 @@ const Detail = () => {
   }, [id]);
 
   useEffect(() => {
+    if (role === "admin") {
+      setAction(true);
+    } else {
+      setAction(false);
+    }
+  }, [role]);
+
+  const handleEditPage = () => {
+    Navigate(`/admin/updatePhone/${id}`);
+  };
+
+  useEffect(() => {
     document.title = `Detail - ${Data.name}`;
   });
 
   return (
     <>
+      {showAlertConfirm && (
+        <AlertAction
+          message="Delete This Data?"
+          valueBtnLeft="Cancel"
+          valueBtnRight="Delete"
+          onLeftBtn={handleAlert}
+          onRightBtn={handleDelete}
+          bgColorLeftBtn="bg-gray-600 hover:bg-gray-800"
+          bgColorRightBtn="bg-red-600 hover:bg-red-800"
+        />
+      )}
+      {showAlertSuccess && (
+        <AlertAction
+          message="Delete Success!"
+          valueBtnRight="Confirm"
+          onRightBtn={prevPage}
+          displayLeftBtn="hidden"
+          bgColorRightBtn="bg-blue-600 hover:bg-blue-800"
+        />
+      )}
       <Navbar moreClass="sticky" moreResponsiveClass="sticky" />
       <div className="detail-container fade-in relative w-full py-8">
         <div className="detail-header relative flex mx-8 p-6 bg-[#fafafa] shadow-xl drop-shadow-xl rounded-xl">
+          {action && (
+            <div className="fixed top-4 right-4 flex items-center gap-6 z-50 px-4 py-2">
+              <IconFA
+                className="fa-solid fa-edit cursor-pointer hover:text-blue-600 transition-all text-[18px]"
+                onClick={handleEditPage}
+              />
+              <IconFA
+                className="fa-solid fa-trash cursor-pointer hover:text-red-600 transition-all text-[18px]"
+                onClick={handleAlert}
+              />
+            </div>
+          )}
           {Data && (
             <>
-              <div className="img-wrapper relative w-72 h-72 mx-24 border border-gray-400 rounded-xl overflow-hidden">
+              <div className="img-wrapper relative w-72 h-72 mx-24 border border-gray-400 rounded-xl object-center overflow-hidden">
                 <Img
-                  srcImage={Data.phone_image}
+                  srcImage={`${API_BASE_URL}/ImageData/${Data.phone_image}`}
                   altImage={Data.name}
-                  className="w-full object-cover h-full"
+                  className="object-center h-full mx-auto"
                 />
               </div>
               <div className="wrapper-detail-header flex-1 capitalize">
                 <Title className="title font-bold text-2xl" Title={Data.name} />
-                <div className="wrapper-subtitle-header mt-2">  
+                <div className="wrapper-subtitle-header mt-2">
                   <div className="subtitle-header flex items-center justify-start mb-2">
                     <Text
                       className="font-semibold text-sm w-20"
@@ -163,7 +252,10 @@ const Detail = () => {
               </div>
               {/* Network */}
               <div className="mt-6">
-                <Title className="subtitle-spec font-semibold text-lg mb-2" Title="Network" />
+                <Title
+                  className="subtitle-spec font-semibold text-lg mb-2"
+                  Title="Network"
+                />
                 <div className="wrapper-spec-detail flex items-center justify-start w-full border border-gray-400 gap-4">
                   <Title
                     className="w-40 font-semibold text-sm border-r border-gray-400 p-2"
@@ -194,7 +286,10 @@ const Detail = () => {
               </div>
               {/* Design */}
               <div className="mt-6">
-                <Title className="subtitle-spec font-semibold text-lg mb-2" Title="Design" />
+                <Title
+                  className="subtitle-spec font-semibold text-lg mb-2"
+                  Title="Design"
+                />
                 <div className="wrapper-spec-detail flex items-center justify-start w-full border border-gray-400 gap-4">
                   <Title
                     className="w-40 font-semibold text-sm border-r border-gray-400 p-2"
@@ -226,7 +321,10 @@ const Detail = () => {
               </div>
               {/* Screen */}
               <div className="mt-6">
-                <Title className="subtitle-spec font-semibold text-lg mb-2" Title="Screen" />
+                <Title
+                  className="subtitle-spec font-semibold text-lg mb-2"
+                  Title="Screen"
+                />
                 <div className="wrapper-spec-detail flex items-center justify-start w-full border border-gray-400 gap-4">
                   <Title
                     className="w-40 font-semibold text-sm border-r border-gray-400 p-2"
@@ -303,7 +401,10 @@ const Detail = () => {
               </div>
               {/* Memory */}
               <div className="mt-6">
-                <Title className="subtitle-spec font-semibold text-lg mb-2" Title="Memory" />
+                <Title
+                  className="subtitle-spec font-semibold text-lg mb-2"
+                  Title="Memory"
+                />
                 <div className="wrapper-spec-detail flex items-center justify-start w-full border border-gray-400 gap-4">
                   <Title
                     className="w-40 font-semibold text-sm border-r border-gray-400 p-2"
@@ -331,7 +432,10 @@ const Detail = () => {
               </div>
               {/* Camera */}
               <div className="mt-6">
-                <Title className="subtitle-spec font-semibold text-lg mb-2" Title="Camera" />
+                <Title
+                  className="subtitle-spec font-semibold text-lg mb-2"
+                  Title="Camera"
+                />
                 <div className="wrapper-spec-detail flex items-center justify-start w-full border border-gray-400 gap-4">
                   <Title
                     className="w-40 font-semibold text-sm border-r border-gray-400 p-2"
@@ -397,7 +501,10 @@ const Detail = () => {
               </div>
               {/* Battery */}
               <div className="mt-6">
-                <Title className="subtitle-spec font-semibold text-lg mb-2" Title="Battery" />
+                <Title
+                  className="subtitle-spec font-semibold text-lg mb-2"
+                  Title="Battery"
+                />
                 <div className="wrapper-spec-detail flex items-center justify-start w-full border border-gray-400 gap-4">
                   <Title
                     className="w-40 font-semibold text-sm border-r border-gray-400 p-2"
@@ -419,8 +526,8 @@ const Detail = () => {
             </>
           )}
           <Title
-          className="disclaimer font-bold text-sm my-6"
-          Title="Disclaimer We can not guarantee that the information on this page is 100% correct."
+            className="disclaimer font-bold text-sm my-6"
+            Title="Disclaimer We can not guarantee that the information on this page is 100% correct."
           />
         </div>
       </div>

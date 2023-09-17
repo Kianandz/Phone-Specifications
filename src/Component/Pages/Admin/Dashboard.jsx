@@ -1,57 +1,114 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../../Fragment/Sidebar";
-import CardList from "../../Fragment/CardList";
-import IconGoogle from "../../Element/IconGoogle";
-import Text from "../../Element/Text";
+import HomeDashboard from "./Home";
+import InsertPhone from "./InsertPhone";
+import ListUsers from "./ListUser";
+import ListPhone from "./ListPhone";
+import BrandsList from "./BrandsList";
+import ErrorPage from "../404";
 
 const Dashboard = () => {
   const Navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [homePage, setHomePage] = useState(true);
+  const [listUsersPage, setListUsersPage] = useState(false);
+  const [insertPage, setInsertPage] = useState(false);
+  const [listPhone, setListPhone] = useState(false);
+  const [brandsList, setBrandsList] = useState(false);
+  const token = localStorage.getItem("authToken");
+  const id = localStorage.getItem("index");
+  const uname = localStorage.getItem("username");
+  const name = localStorage.getItem("name");
+  const role = localStorage.getItem("role");
 
-  const listUsers = () => {
-    Navigate("/admin/list-users");
-  };
-  const listSmartphone = () => {
-    Navigate("/admin/list-smartphone");
-  };
-  const listBrands = () => {
-    Navigate("/admin/list-brands");
-  };
+  const authLogin = () => {
+    if(token && role === "admin"){
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+      Navigate("/")
+    }
+  }
 
   useEffect(() => {
-    document.title = "Dashboard Admin";
-  });
+    authLogin();
+  }, [token])
+
+  const handleHomePage = () => {
+    setHomePage(true);
+    setListUsersPage(false);
+    setInsertPage(false);
+    setListPhone(false);
+    setBrandsList(false);
+  };
+
+  const handleListUsersPage = () => {
+    setListUsersPage(true);
+    setInsertPage(false);
+    setHomePage(false);
+    setListPhone(false);
+    setBrandsList(false);
+  };
+
+  const handleInsertPage = () => {
+    setInsertPage(true);
+    setListUsersPage(false);
+    setHomePage(false);
+    setListPhone(false);
+    setBrandsList(false);
+  };
+
+  const handleListPhone = () => {
+    setListPhone(true);
+    setListUsersPage(false);
+    setHomePage(false);
+    setInsertPage(false);
+    setBrandsList(false);
+  };
+
+  const handleBrandsList = () => {
+    setBrandsList(true);
+    setListPhone(false);
+    setListUsersPage(false);
+    setHomePage(false);
+    setInsertPage(false);
+  };
   return (
     <>
-      <div className="relative w-full h-screen">
-        <Sidebar />
-        <div className="relative grid grid-cols-3 items-center gap-8 p-8 w-full">
-          <CardList
-            icon="fa-solid fa-user"
-            title="User"
-            text="Total User : 400 Users"
-            href={listUsers}
+      {isLoggedIn ? (
+        <div className="relative w-full">
+          <Sidebar
+            greetName={name}
+            activeHome={`${homePage ? "text-gray-400" : "text-white"}`}
+            activeListUsers={`${
+              listUsersPage ? "text-gray-400" : "text-white"
+            }`}
+            activeInsert={`${insertPage ? "text-gray-400" : "text-white"}`}
+            activeSmartphone={`${listPhone ? "text-gray-400" : "text-white"}`}
+            activeBrands={`${brandsList ? "text-gray-400" : "text-white"}`}
+            onClickHome={handleHomePage}
+            onClickUserList={handleListUsersPage}
+            onClickInsert={handleInsertPage}
+            onClickListPhone={handleListPhone}
+            onClickBrandsList={handleBrandsList}
           />
-          <CardList
-            icon="fa-solid fa-mobile-alt"
-            title="Smartphone"
-            text="Total Smartphone : 400 Smartphone"
-            href={listSmartphone}
-          />
-          <CardList
-            icon="fa-solid fa-object-group"
-            title="Brands"
-            text="Total Brands : 200 Brands"
-            href={listBrands}
-          />
+          {homePage && (
+            <HomeDashboard
+              usersLink={handleListUsersPage}
+              addLink={handleInsertPage}
+              phoneLink={handleListPhone}
+              brandsLink={handleBrandsList}
+            />
+          )}
+          {listUsersPage && <ListUsers />}
+          {insertPage && <InsertPhone />}
+          {listPhone && <ListPhone />}
+          {brandsList && <BrandsList />}
         </div>
-        <div className="flex items-center justify-center text-center w-full text-white">
-          <div className="px-6 py-3 bg-gray-700 hover:bg-gray-800 rounded-lg flex gap-2 items-center cursor-pointer transition-all text-sm">
-            <IconGoogle iconValue="add" />
-            <Text Text="Add New Smartphone" />
-          </div>
-        </div>
-      </div>
+      ) : (
+        <ErrorPage/>
+      )}
     </>
   );
 };

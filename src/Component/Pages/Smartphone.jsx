@@ -50,7 +50,7 @@ const Smartphone = () => {
           {visibleSmartphones.map((device) => (
             <Card
               key={device.id}
-              srcImage={device.phone_image}
+              srcImage={`${API_BASE_URL}/ImageData/${device.phone_image}`}
               Title={device.name}
               id={device.id}
             />

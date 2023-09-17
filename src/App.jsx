@@ -12,7 +12,7 @@ import Smartphone from "./Component/Pages/Smartphone";
 import PhoneBrands from "./Component/Pages/PhoneBrands";
 import Detail from "./Component/Pages/Detail";
 import Dashboard from "./Component/Pages/Admin/Dashboard";
-import TestAPI from "./Component/Pages/TestAPI";
+import UpdatePhone from "./Component/Pages/Admin/UpdatePhone";
 
 const Router = createBrowserRouter([
   {
@@ -55,9 +55,9 @@ const Router = createBrowserRouter([
     element: <Detail/>,
   },
   {
-    path: "apitest",
-    element: <TestAPI/>
-  }
+    path: "/admin/updatePhone/:id",
+    element: <UpdatePhone/>
+  },
 ]);
 
 const App = () => {

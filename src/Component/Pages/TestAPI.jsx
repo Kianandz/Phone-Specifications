@@ -1,30 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { API_BASE_URL } from "../../API_BASE_URL";
+import gsmarena from "gsmarena-api";
 
 const TestAPI = (props) => {
-    const [phone, setPhone] = useState([]);
+  const [phone, setPhone] = useState([]);
 
-    useEffect(() => {
-        fetch(`${API_BASE_URL}/allphone`)
-        .then((response) => response.json())
-        .then((data) => {
-            console.log(data)
-            setPhone(data);
-        })
-        .catch((error) => {
-            console.error("Error Fetching Data :", error)
-        })
-    })
-    return(
-        <>
-        {phone.length > 0 ?phone.map((item, index)=> 
-        <div key={index}>
-            <h1>{item.name}</h1>
-            <h1>{item.brands}</h1>
-        </div>
-        ):""}
-        </>
-    );
-}
+  const test = async () => {
+    const brands = await gsmarena.catalog.getBrands();
+    console.log(brands);
+  }
+
+  useEffect(() => {
+    test()
+  });
+  return (
+    <>
+      <h1>test</h1>
+    </>
+  );
+};
 
 export default TestAPI;

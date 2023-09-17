@@ -41,7 +41,7 @@ const Search = (props) => {
           {searchResults.map((result) => (
             <Card
               key={result.id}
-              srcImage={result.phone_image}
+              srcImage={`${API_BASE_URL}/ImageData/${result.phone_image}`}
               Title={result.name}
               id={result.id}
             />

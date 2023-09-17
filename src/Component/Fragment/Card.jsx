@@ -13,7 +13,7 @@ const Card = (props) => {
   return (
     <>
       <div
-        className="card relative w-40 w-auto bg-[#fafafa] py-2 px-1 overflow-hidden rounded-xl cursor-pointer shadow-xl"
+        className="card relative w-40 w-auto bg-[#fafafa] p-4 overflow-hidden rounded-xl cursor-pointer shadow-xl"
         onClick={handleCardLink}
       >
         <Img

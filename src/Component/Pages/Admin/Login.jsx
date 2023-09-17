@@ -1,14 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"; 
 import { useNavigate } from "react-router-dom";
-import { API_BASE_URL } from "../../../API_BASE_URL";
 import FormLogin from "../../Fragment/FormLogin";
 import Title from "../../Element/Title";
 import "../../../assets/Css/Animation.css";
 
 const Login = () => {
-    useEffect(() => {
-        document.title = "Login";
-    })
+  const Navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("authToken");
+    if (token) {
+      Navigate("/admin/dashboard");
+    }
+  });
+
+  useEffect(() => {
+    document.title = "Login";
+  });
   return (
     <>
       <div className="flex fade-in-error items-center justify-center w-full h-screen">

@@ -35,7 +35,7 @@ const Navbar = (props) => {
     <>
       {/* Wrapper Main Navbar */}
       <div
-        className={`main-navbar mx-auto top-0 left-0 w-full px-40 py-4 drop-shadow-xl flex items-center justify-between bg-[#ffffff] ${props.moreClass} z-50`}
+        className={`main-navbar mx-auto top-0 left-0 w-full px-40 py-4 drop-shadow-xl flex items-center justify-between bg-[#ffffff] ${props.moreClass} z-20`}
       >
         {/* Navbar Brand */}
         <Title
